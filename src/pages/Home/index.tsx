@@ -35,12 +35,6 @@ const footerStyle: React.CSSProperties = {
     borderTop: '4px dashed #404973',
 };
 
-const CardStyle: React.CSSProperties = {
-    padding: '2.5vh 16px ',
-    border: 'none',
-    background: '#686f99',
-}
-
 export function Home() {
     const [content, setContent] = useState<string>('');
 
