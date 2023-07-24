@@ -58,7 +58,7 @@ export function Home() {
     }
 
     return (
-        <div style={{ width: '1280px' }}>
+        <div style={{ width: '80 rem' }}>
             <Row>
                 <Col span={24} style={headerStyle}>
                     <div>
@@ -71,8 +71,6 @@ export function Home() {
                     </Card>
                 </Col>
                 <Col span={8} style={CardStyle}>
-                    {/* <MenuList onClick={(e)=>handleContent(`1-${e.key}`)} style={{ width: 'auto', height: '65vh', borderRadius: '8px', overflowY: 'auto' }} /> */}
-                    {/* <MenuList onClick={(e) => console.log(e)} style={{ width: 'auto', height: '65vh', borderRadius: '8px', overflowY: 'auto' }} /> */}
                     <Menu
                         className='scrollStyled'
                         mode="inline"
