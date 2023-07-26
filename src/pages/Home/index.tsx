@@ -1,44 +1,18 @@
-import { Col, Row, Card, MenuProps, Menu } from 'antd';
-import Banner from '../../assets/banner/Banner_BG.png';
+import { Button, Menu, MenuProps } from 'antd';
 import Logo from '../../assets/banner/Logo_Curso.svg';
 import './scroll.css';
+// import './style.css'
 import { useState } from 'react';
 import { Conteudo } from '../Conteudo/Conteudo';
 import { items, rootSubmenuKeys } from '../Conteudo/MenuList';
-
-
-const headerStyle: React.CSSProperties = {
-    height: '25vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    background: '#686f99',
-    backgroundImage: `url(${Banner})`
-    // borderBottom: '4px dashed #404973',
-};
-
-const bodyStyle: React.CSSProperties = {
-    padding: '2.5vh 16px',
-    height: '70vh',
-    color: '#fff',
-    background: '#686f99',
-    border: 'none',
-};
-
-const footerStyle: React.CSSProperties = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '5vh',
-    color: '#fff',
-    background: '#686f99',
-    borderTop: '4px dashed #404973',
-};
+import { StyledBody, StyledContent, StyledFooter, StyledHeader, StyledMenu, StyledPage, StyledPopup } from './Home.style';
+import { Popup, NavBar } from 'antd-mobile';
+import { MenuOutlined } from '@ant-design/icons';
 
 export function Home() {
     const [content, setContent] = useState<string>('');
-
     const [openKeys, setOpenKeys] = useState(['sub1']);
+    const [menuVisible, setMenuVisible] = useState(false)
 
     const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
         const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
@@ -50,38 +24,72 @@ export function Home() {
     };
 
     function handleContent(e: string) {
-        // console.log(e);
         setContent(e);
+    }
+    function handleMenuContent(e: string) {
+        setContent(e);
+        setMenuVisible(false)
     }
 
     return (
-        <div>
-            <Row>
-                <Col span={24} style={headerStyle}>
-                    <div>
-                        <center><img src={Logo} width='256rem' style={{}} /></center>
-                    </div>
-                </Col>
-                    <Col xs={{ order: 2, span: 24 }} md={{ order: 1, span: 16 }} style={bodyStyle}>
-                        <Card className='scrollStyled' style={{ height: '100%', overflowY: 'auto' }}>
-                            <Conteudo codigo={content} />
-                        </Card>
-                    </Col>
-                    <Col xs={{ order: 1, span: 24 }} md={{ order: 2, span: 8 }} style={bodyStyle}>
-                        <Menu
-                            className='scrollStyled'
-                            mode="inline"
-                            openKeys={openKeys}
-                            onOpenChange={onOpenChange}
-                            items={items}
-                            style={{ height: '100%', borderRadius: '8px', overflowY: 'auto' }}
-                            onClick={(e) => handleContent(e.key)}
-                        />
-                    </Col>
-                <Col xs={{ order: 3 }} span={24} style={footerStyle}>
-                    <div>JanDev | @GGCoffee | 2023</div>
-                </Col>
-            </Row>
-        </div >
+        <StyledPage>
+            
+            <StyledHeader>
+                <div>
+                    <center><img src={Logo} width='256rem' /></center>
+                </div>
+            </StyledHeader>
+            <StyledBody>
+            <StyledPopup>
+                <Button
+                    style={{
+                        // position: 'absolute',
+                        // top: '16px',
+                        // left: '16px',
+                        backgroundColor: 'transparent',
+                        border: 'none'
+                    }}
+                    icon={<MenuOutlined style={{color: 'white', fontSize: 24}} />}
+                    onClick={() => {
+                        setMenuVisible(true)
+                    }}
+                />
+                <Popup
+                    visible={menuVisible}
+                    onMaskClick={() => {
+                        setMenuVisible(false)
+                    }}
+                    position='left'
+                    bodyStyle={{ width: '100vw' }}
+                >
+                    <NavBar onBack={() => setMenuVisible(false)} />
+                    <Menu
+                        style={{ border: 'none' }}
+                        mode="inline"
+                        openKeys={openKeys}
+                        onOpenChange={onOpenChange}
+                        items={items}
+                        onClick={(e) => handleMenuContent(e.key)}
+                    />
+                </Popup>
+            </StyledPopup>
+                <StyledContent className='styledScroll'>
+                    <Conteudo codigo={content} />
+                </StyledContent>
+                <StyledMenu className='styledScroll'>
+                    <Menu
+                        style={{ border: 'none' }}
+                        mode="inline"
+                        openKeys={openKeys}
+                        onOpenChange={onOpenChange}
+                        items={items}
+                        onClick={(e) => handleContent(e.key)}
+                    />
+                </StyledMenu>
+            </StyledBody>
+            <StyledFooter className='styledFooter'>
+                <div>JanDev | @GGCoffee | 2023</div>
+            </StyledFooter>
+        </StyledPage>
     )
 }

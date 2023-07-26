@@ -20,7 +20,9 @@ export function Conteudo(conteudoProps?: ConteudoProps) {
             )
         default:
             return (
-                <Empty style={{paddingTop: '20vh'}} description={'Em construção!'}/>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '55vh'}}>
+                    <Empty description={'Em construção!'} />
+                </div>
             )
     }
 }
@@ -189,7 +191,7 @@ const aula = {
                     O <Text strong>Pixel Art</Text>, uma forma de arte digital que utiliza pixels individuais para criar imagens, teve seu auge na era dos videogames 8 e 16 bits, mas sua relevância perdura até os dias de hoje. Embora a tecnologia tenha avançado consideravelmente desde o surgimento dos primeiros jogos, o <Text strong>Pixel Art</Text> continua a ser uma escolha proeminente para muitos desenvolvedores de jogos contemporâneos. Através de sua estética única e encantadora, ele desempenha um papel fundamental no cenário dos games e é reverenciado por fãs e criadores de todo o mundo.
                 </Paragraph>
                 <Paragraph>
-                    <p style={{ textAlign: 'center' }}><Image style={{ width: 64 }} src={GGCoffeeLogo} /></p>
+                    <div style={{ textAlign: 'center' }}><Image style={{ width: 64 }} src={GGCoffeeLogo} /></div>
                 </Paragraph>
                 <Paragraph>
                     Um dos motivos pelos quais o <Text strong>Pixel Art</Text> permanece tão relevante é sua capacidade de evocar nostalgia. Muitos jogadores cresceram com consoles de jogos clássicos, como o <Text type="success">NES</Text>, <Text type="success">SNES</Text> e o <Text type="success">Sega Genesis</Text>, nos quais o <Text strong>Pixel Art</Text> era a principal forma de representação visual. Ao usar essa estética no desenvolvimento de novos jogos, os desenvolvedores conseguem apelar para a memória afetiva dos jogadores, despertando sentimentos de carinho e saudade pela era dourada dos videogames.
@@ -210,5 +212,5 @@ const aula = {
                     Em resumo, a importância do <Text strong>Pixel Art</Text> nos jogos é indiscutível. Sua capacidade de evocar nostalgia, oferecer liberdade criativa, acessibilidade e um charme estético atemporal fazem com que ele seja uma escolha valiosa para os desenvolvedores e apreciadores de jogos. Enquanto a indústria de videogames continua a evoluir, o <Text strong>Pixel Art</Text> permanecerá como uma forma de arte amada, contribuindo para a rica diversidade de experiências que os jogos oferecem aos jogadores em todo o mundo.
                 </Paragraph>
             </Typography>
-        </>,
+        </>
 }
